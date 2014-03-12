@@ -1,0 +1,45 @@
+{
+  "name": "whmob",
+  "description": "WhiteHat Sentinel Mobile Pass-through Server",
+  "version": "0.0.1",
+  "homepage": "http://",
+  "author": {
+    "name": "Carl Orthlieb",
+    "email": "carl.orthlieb@whitehatsec.com",
+    "url": "https://github.com/orthlieb/whmob"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "http://www.alt-f1.be"
+  },
+  "private": true,
+  "scripts": {
+    "start": "grunt"
+  },
+  "dependencies": {
+    "express": "*",
+    "connect-flash": "*",
+    "grunt": "*",
+    "jade": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "underscore": "*"
+  },
+  "keywords": [
+    "Sentinel",
+    "WhiteHat"
+  ],
+  "devDependencies": {
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.2",
+    "grunt-contrib-watch": "~0.5.1",
+    "grunt-open": "~0.2.2",
+    "grunt-nodemon": "~0.1.0",
+    "grunt-markdown": "~0.4.0",
+    "chai": "~1.9.0",
+    "mocha": "~1.17.1"
+  }
+}

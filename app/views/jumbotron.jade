@@ -1,0 +1,9 @@
+mixin jumbotron(headerText, iconFile)
+	.container
+		.jumbotron
+			if (iconFile) 
+				img(src="#{iconFile}").left
+			else
+				img(src="/img/PassBoot.png").left
+			h1 #{headerText}
+			p(id="tagline") Protecting Your Web Apps 24x7

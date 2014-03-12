@@ -1,0 +1,12 @@
+@import 'base';
+@import 'jumbotron';
+
+.error-template {
+    padding: 40px $default-spacing;
+    text-align: center;
+}
+
+.error-actions {
+    margin-top: $default-spacing;
+    margin-bottom: $default-spacing;
+}

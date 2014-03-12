@@ -1,0 +1,55 @@
+doctype 5
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		meta(name='description', content='')
+		meta(name='author', content='')
+		link(rel='shortcut icon', href='/ico/favicon.png')
+		title Site Status
+		
+		// Bootstrap core CSS
+		link(href='/bootstrap/css/bootstrap.css', rel='stylesheet')
+		
+		// Custom styles for this template
+		link(href='/css/index.css', rel='stylesheet')
+
+		script(src="/jquery/jquery.js")
+		script(src="/jquery/jquery.validate.js")
+		script(src="/bootstrap/js/bootstrap.min.js")
+	body
+	mixin status(site)
+		tr
+			td
+				p= site.name
+			td
+				for status in site.status
+					case status.priority
+						when "high"
+							button.btn.btn-xs.btn-danger= status.short_description
+							&nbsp;
+						when "medium"
+							button.btn.btn-xs.btn-warning= status.short_description
+							&nbsp;
+						when "low"
+							button.btn.btn-xs.btn-success= status.short_description
+							&nbsp;
+
+	include navbar
+	include jumbotron
+	+jumbotron("Site Status", "/img/MainLogo.png")
+	.container
+		.row
+			.col-xs-12
+					include flashboard
+		.row
+			.col-xs-12
+				.account-wall
+					table.table.table-striped.table-bordered.table-condensed.table-wrap
+						tr
+							th
+								p Site name
+							th
+								p Status
+						for site in sites
+							+status(site)

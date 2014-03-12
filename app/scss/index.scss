@@ -1,0 +1,19 @@
+@import 'base';
+@import 'navbar';
+@import 'jumbotron';
+@import 'flashboard';
+
+th > p, td > p {
+	vertical-align: middle;
+	margin-bottom: 0px;
+}
+
+.table-wrap {
+	table-layout: fixed;
+	width: 100%;
+	word-wrap: break-word;
+}
+
+.btn {
+	margin-bottom: 3px;
+}
