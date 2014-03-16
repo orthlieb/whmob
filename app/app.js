@@ -24,13 +24,18 @@ config = app.get('config');
 
 // Load all models.
 var modelsDir = __dirname + '/models';
-fs.readdirSync(modelsDir).forEach(function (file) {
-    console.log('Models: loading ' + file);
-    if (file[0] === '.') {
-        return;
-    }
-    require(modelsDir + '/' + file);
-});
+try {
+    fs.readdirSync(modelsDir).forEach(function (file) {
+        console.log('Models: loading ' + file);
+        if (file[0] === '.') {
+            return;
+        }
+        require(modelsDir + '/' + file);
+    });
+} catch (e) {
+    console.log('Models could not be loaded. ' + e);
+    // Directory doesn't exist.
+}
 
 // Configure passport
 require('./config/passport')(passport, config);

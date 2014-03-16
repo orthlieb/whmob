@@ -1,4 +1,3 @@
-/* Red */
 $bgDefault: #29669f;
 $bgHighlight: #8EC9FF;
 $colDefault: #ecf0f1;
@@ -68,4 +67,12 @@ $colHover: #ABDDE9;
         &:hover, &:focus {
             color: $colHover;
             background-color: $bgHighlight; }}
+}
+
+.navbar-header {
+	.pagination { 
+		margin-top: 10px; 
+		margin-bottom: 0px; 
+		margin-right: 10px 
+	}
 }

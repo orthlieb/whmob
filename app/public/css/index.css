@@ -27,7 +27,6 @@ body {
 hr {
   margin: 0 0 15px 0; }
 
-/* Red */
 /* --- Style --- */
 .navbar-default {
   background-color: #29669f;
@@ -68,6 +67,11 @@ hr {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
       color: #abdde9;
       background-color: #8ec9ff; } }
+.navbar-header .pagination {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  margin-right: 10px; }
+
 .jumbotron {
   margin: 0; }
   .jumbotron img {
