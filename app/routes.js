@@ -6,18 +6,20 @@
 
 var fs = require('fs');
 
-module.exports = function (app, passport) {
-    var config = app.get('config');
-
+module.exports = function (app, passport, config) {
     // Load all routes.
     var routesDir = __dirname + '/routes';
-    fs.readdirSync(routesDir).forEach(function (file) {
-        console.log('Routes: loading ' + file);
-        if (file[0] === '.') {
-            return;
-        }
-        require(routesDir + '/' + file)(app, passport, config);
-    });
+    try {
+        fs.readdirSync(routesDir).forEach(function (file) {
+            console.log('Routes: loading ' + file);
+            if (file[0] === '.') {
+                return;
+            }
+            require(routesDir + '/' + file)(app, passport, config);
+        });
+    } catch (e) {
+        console.log('Routes: cannot load routes');
+    }
 
     app.get('/logout', function (req, res) {
         req.logout();

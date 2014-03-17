@@ -4,7 +4,7 @@ $colDefault: #ecf0f1;
 $colHover: #ABDDE9; 
 
 /* --- Style --- */
-.navbar-default {
+.pagination {
     background-color: $bgDefault;
     border-color: $bgHighlight;
     .navbar-brand {
@@ -69,8 +69,10 @@ $colHover: #ABDDE9;
             background-color: $bgHighlight; }}
 }
 
-.pagination { 
-	margin-top: 10px; 
-	margin-bottom: 0px; 
-	margin-right: 10px;
+.navbar-header {
+	.pagination { 
+		margin-top: 10px; 
+		margin-bottom: 0px; 
+		margin-right: 10px 
+	}
 }

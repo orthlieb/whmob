@@ -22,20 +22,8 @@ var config = require('./config/appConfig.json');
 app.set('config', _.extend(config.common, config[app.get('env')]));
 config = app.get('config');
 
-// Load all models.
-var modelsDir = __dirname + '/models';
-try {
-    fs.readdirSync(modelsDir).forEach(function (file) {
-        console.log('Models: loading ' + file);
-        if (file[0] === '.') {
-            return;
-        }
-        require(modelsDir + '/' + file);
-    });
-} catch (e) {
-    console.log('Models could not be loaded. ' + e);
-    // Directory doesn't exist.
-}
+// Load models
+require('./models')(app, passport, config);
 
 // Configure passport
 require('./config/passport')(passport, config);
@@ -61,8 +49,8 @@ app.use(passport.session());
 
 app.use(flash());
 
-// Routes
-require('./routes')(app, passport);
+// Load routes
+require('./routes')(app, passport, config);
 
 app.use(app.router);
 app.use(express.static(path.join(__dirname, config.dir.public)));

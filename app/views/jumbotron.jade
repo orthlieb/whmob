@@ -1,9 +1,15 @@
-mixin jumbotron(headerText, iconFile)
+mixin jumbotron(headerText, subText, iconFile)
 	.container
 		.jumbotron
 			if (iconFile) 
 				img(src="#{iconFile}").left
 			else
-				img(src="/img/PassBoot.png").left
-			h1 #{headerText}
-			p(id="tagline") Protecting Your Web Apps 24x7
+				img(src="/img/MainLogo.png").left
+			if (headerText)
+				h1 #{headerText}
+			else
+				h1 WhiteHat Sentinel Mobile
+			if (subText)	
+				p(id="tagline") #{subText}
+			else
+				p(id="tagline") Protecting Your Web Apps 24x7

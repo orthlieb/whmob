@@ -10,11 +10,14 @@ mixin navbar(pages)
 				a.navbar-brand(href="https://sentinel.whitehatsec.com") WhiteHat Sentinel
 				if (pages)
 					ul.pagination.pagination-sm.pull-right(id="paginator")
-						for (page in pages)
+						each page in pages
 							case page.state
-								when "disabled": 	li: a.disabled(href=#{page.url}) #{page.name}
-								when "active":		li: a.active(href=#{page.url}) #{page.name}
-								default:			li: a(href=#{page.url}) #{page.name}
+								when "active"	
+									li.active: a(href=page.url) #{	page.title}
+								when "disabled"	
+									li.disabled: a(href=page.url) #{page.title}
+								default
+									li: a(href=page.url) #{page.title}
 			.collapse.navbar-collapse(id="navbar-collapse-items") 
 				ul.nav.navbar-nav.navbar-right
 					li

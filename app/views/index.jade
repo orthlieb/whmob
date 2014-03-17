@@ -38,14 +38,12 @@ html(lang='en')
 	include navbar
 	+navbar(pages)
 	include jumbotron
-	+jumbotron("Site Status", "/img/MainLogo.png")
+	+jumbotron("Site Status")
 	.container
 		.row
 			.col-xs-12
-					include flashboard
-		.row
-			.col-xs-12
 				.account-wall
+					include flashboard
 					table.table.table-striped.table-bordered.table-condensed.table-wrap
 						tr
 							th

@@ -10,14 +10,14 @@ exports.generatePaginatorData = function Paginate(url, numSites, currentPage, vi
     pages.push({
         title: '<<',
         state: (currentPage === 0 ? 'disabled' : 'normal'),
-        url: url + '&currentPage=0&viewLimit=' + viewLimit
+        url: url + '?currentPage=0&viewLimit=' + viewLimit
     });
 
     // Page backward
     pages.push({
         title: '<',
         state: (currentPage === 0 ? 'disabled' : 'normal'),
-        url: url + '&currentPage=0&viewLimit=' + viewLimit
+        url: url + '?currentPage=0&viewLimit=' + viewLimit
     });
 
     // Middle pages
@@ -25,7 +25,7 @@ exports.generatePaginatorData = function Paginate(url, numSites, currentPage, vi
         var page = {
             title: i + 1,
             state: (i === currentPage ? 'active' : 'normal'),
-            url: url + '&currentPage=' + i + '&viewLimit=' + viewLimit
+            url: url + '?currentPage=' + i + '&viewLimit=' + viewLimit
         };
         pages.push(page);
     }
@@ -33,15 +33,15 @@ exports.generatePaginatorData = function Paginate(url, numSites, currentPage, vi
     // Page forward
     pages.push({
         title: '>',
-        state: (currentPage === lastPage ? 'disabled' : 'normal'),
-        url: url + '&currentPage=' + (currentPage + 1) + '&viewLimit=' + viewLimit
+        state: (currentPage === lastPage - 1 ? 'disabled' : 'normal'),
+        url: url + '?currentPage=' + (currentPage + 1) + '&viewLimit=' + viewLimit
     });
 
     // Last page
     pages.push({
         title: '>>',
-        state: (currentPage === lastPage ? 'disabled' : 'normal'),
-        url: url + '&currentPage=' + lastPage + '&viewLimit=' + viewLimit
+        state: (currentPage === lastPage - 1 ? 'disabled' : 'normal'),
+        url: url + '?currentPage=' + lastPage + '&viewLimit=' + viewLimit
     });
 
     return pages;
