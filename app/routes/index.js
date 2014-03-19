@@ -19,7 +19,7 @@ module.exports = function (app, passport, config) {
         var navOptions = {
             numItemsInPage: Number(req.query.numItemsInPage) > 0 ? Number(req.query.numItemsInPage) : 15,
             numNavButtons: Number(req.query.numNavButtons) > 0 ? Number(req.query.numNavButtons) : 5,
-            showEndButtons: /^true$/i.test(req.query.showEndButtons)
+            showEndButtons: req.query.showEndButtons ? /^true$/i.test(req.query.showEndButtons) : true
         }
 
         // Issue the request to the Sentinel API

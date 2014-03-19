@@ -3,26 +3,42 @@ ssh -i WhiteHatKey.pem ec2-user@ec2-54-202-212-33.us-west-2.compute.amazonaws.co
 sudo yum update 
 sudo yum install gcc-c++ make
 sudo yum install openssl-devel
+
+// Install and make git
 sudo yum install git
 git clone git://github.com/joyent/node.git
 cd node
 ./configure
 sudo make install
+
+// Add /usr/local/bin to the list of sudoers
 sudo su
 nano /etc/sudoers
 - Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
+
+// Install and make NPM
 git clone https://github.com/isaacs/npm.git
 cd ../npm
 sudo make install
-npm install -g grunt
+
+// Modify bash profile to hold production variables
 echo export NODE_ENV=production >> ~/.bash_profile
 echo export PORT=8080 >> ~/.bash_profile
 source ~/.bash_profile
+
+// Redirect port 80 to 8080
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to 8080
 
 // To install whmob
 mkdir site
 cd site
 git clone https://github.com/orthlieb/whmob
+npm install
 cd app/config
 nano appConfig.json
 - paste in local appConfig.json
+
+// To run
+sudo npm install forever
+forever app/app.js
+./node_modules/forever/bin/forever start -al forever.log -ao out.log -ae err.log app/app.js
