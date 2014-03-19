@@ -6,3 +6,5 @@ app/config/appConfig.json
 .nodemonignore
 
 *.scssc
+
+keys/WhiteHatKey.pem

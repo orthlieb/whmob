@@ -1,0 +1,28 @@
+ssh -i WhiteHatKey.pem ec2-user@ec2-54-202-212-33.us-west-2.compute.amazonaws.com
+// To create the image
+sudo yum update 
+sudo yum install gcc-c++ make
+sudo yum install openssl-devel
+sudo yum install git
+git clone git://github.com/joyent/node.git
+cd node
+./configure
+sudo make install
+sudo su
+nano /etc/sudoers
+- Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
+git clone https://github.com/isaacs/npm.git
+cd ../npm
+sudo make install
+npm install -g grunt
+echo export NODE_ENV=production >> ~/.bash_profile
+echo export PORT=8080 >> ~/.bash_profile
+source ~/.bash_profile
+
+// To install whmob
+mkdir site
+cd site
+git clone https://github.com/orthlieb/whmob
+cd app/config
+nano appConfig.json
+- paste in local appConfig.json

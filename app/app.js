@@ -3,8 +3,8 @@
 //
 'use strict';
 
-var PORT_LISTENER = 3001;
-console.log('I am listening to this port: http://localhost:%s', PORT_LISTENER);
+var PORT_LISTENER = process.env.PORT || 3001;
+console.log('Express server listening on port ' + PORT_LISTENER + ' in ' + process.env.NODE_ENV + ' mode');
 
 var express = require('express'),
     fs = require('fs'),
@@ -29,7 +29,7 @@ require('./models')(app, passport, config);
 require('./config/passport')(passport, config);
 
 // All environments
-app.set('port', process.env.PORT || PORT_LISTENER);
+app.set('port', PORT_LISTENER);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
