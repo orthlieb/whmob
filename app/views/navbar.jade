@@ -15,7 +15,7 @@ mixin navbar(pages)
 								when "active"	
 									li.active: a(href=page.url) #{	page.title}
 								when "disabled"	
-									li.disabled: a(href=page.url) #{page.title}
+									li.disabled: a #{page.title}
 								default
 									li: a(href=page.url) #{page.title}
 			.collapse.navbar-collapse(id="navbar-collapse-items") 

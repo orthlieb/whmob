@@ -14,16 +14,19 @@ module.exports = function (app, passport, config) {
     // Home page
     app.get('/', Auth.isAuthenticated, function (req, res) {
         // Validate incoming parameters and set up the paginator
-        var viewLimit = Number(req.query.viewLimit);
-        viewLimit = (viewLimit > 0) ? viewLimit : 10;
         var currentPage = Number(req.query.currentPage);
         currentPage = (currentPage >= 0) ? currentPage : 0;
+        var navOptions = {
+            numItemsInPage: Number(req.query.numItemsInPage) > 0 ? Number(req.query.numItemsInPage) : 15,
+            numNavButtons: Number(req.query.numNavButtons) > 0 ? Number(req.query.numNavButtons) : 5,
+            showEndButtons: /^true$/i.test(req.query.showEndButtons)
+        }
 
         // Issue the request to the Sentinel API
         // https://sentinel.whitehatsec.com/api/site?display_scan_status=1&format=json
         var options = {
             host: 'sentinel.whitehatsec.com',
-            path: '/api/site?display_scan_status=1&format=json', //&page:limit=' + viewLimit + 'page:offset=' + currentPage,
+            path: '/api/site?display_scan_status=1&format=json&page:limit=' + navOptions.numItemsInPage + '&page:offset=' + (currentPage * navOptions.numItemsInPage),
             port: 443,
             headers: {
                 'Cookie': 'APID=' + req.user.apid
@@ -52,15 +55,13 @@ module.exports = function (app, passport, config) {
                     req.flash('error', data.message);
                 } else {
                     // Make sure we're not off the end of the list.
-                    if (currentPage * viewLimit >= data.stats.total_sites) {
-                        currentPage = Math.ceil(data.stats.total_sites / viewLimit) - 1;
+                    if (currentPage * options.numItemsInPage >= data.stats.total_sites) {
+                        currentPage = Math.ceil(data.stats.total_sites / options.numItemsInPage) - 1;
                     }
-                    pages = Navbar.generatePaginatorData(config.url.home, data.stats.total_sites, currentPage, viewLimit);
+                    pages = Navbar.generatePaginatorData(config.url.home, data.stats.total_sites, currentPage, navOptions);
 
                     // Right now we grab all the data and paginate. We'll need to change that.
-                    var startSite = currentPage * viewLimit;
-                    var endSite = (currentPage + 1) * viewLimit;
-                    for (var i = startSite; i < endSite; i++) {
+                    for (var i = 0; i < data.sites.length; i++) {
                         if (data.sites[i]) {
                             var s = {
                                 name: data.sites[i].label ? data.sites[i].label : data.sites[i].site_url,

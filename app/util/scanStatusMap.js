@@ -43,7 +43,7 @@ module.exports = {
     },
     "unconfirmed_cred": {
         priority: "low",
-        long_description: "Reviewing Credentials",
+        short_description: "Reviewing Credentials",
         tool_tip: "Reviewing Submitted Credentials",
         silk_icon_class: "reviewing_cred_icon"
     },
