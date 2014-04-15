@@ -29,7 +29,7 @@ exports.generatePaginatorData = function Paginate(url, numSites, currentPage, op
     if (options.showEndButtons) {
         pages.push({
             title: '<<',
-            state: (startPage <= 0 ? 'disabled' : 'normal'),
+            state: (currentPage <= 0 ? 'disabled' : 'normal'),
             url: url + '?currentPage=0' + endStuff
         });
     }
@@ -62,7 +62,7 @@ exports.generatePaginatorData = function Paginate(url, numSites, currentPage, op
     if (options.showEndButtons) {
         pages.push({
             title: '>>',
-            state: (startPage + options.numNavButtons >= lastPage ? 'disabled' : 'normal'),
+            state: (currentPage >= lastPage ? 'disabled' : 'normal'),
             url: url + '?currentPage=' + lastPage + endStuff
         });
     }

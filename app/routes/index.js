@@ -26,7 +26,8 @@ module.exports = function (app, passport, config) {
         // https://sentinel.whitehatsec.com/api/site?display_scan_status=1&format=json
         var options = {
             host: 'sentinel.whitehatsec.com',
-            path: '/api/site?display_scan_status=1&format=json&page:limit=' + navOptions.numItemsInPage + '&page:offset=' + (currentPage * navOptions.numItemsInPage),
+            path: '/api/site?display_scan_status=1&format=json&page:limit=' + navOptions.numItemsInPage +
+                '&page:offset=' + (currentPage * navOptions.numItemsInPage) + '&page:order_by=label_asc',
             port: 443,
             headers: {
                 'Cookie': 'APID=' + req.user.apid
